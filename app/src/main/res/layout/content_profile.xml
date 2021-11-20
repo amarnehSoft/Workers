@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:showIn="@layout/activity_profile">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:orientation="vertical">
+
+        <TextView
+            style="@style/headerText"
+            android:layout_marginBottom="20dp"
+            android:text="@string/account_info" />
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout
+            android:id="@+id/mobileLayout"
+            style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/mobileImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_baseline_phone_40" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toEndOf="@id/mobileImageView"
+                android:text="@string/mobile" />
+
+            <TextView
+                android:id="@+id/tv_mobile"
+                style="@style/profileDetailsMiniText"
+                android:layout_toEndOf="@id/mobileImageView"
+                tools:text="+91-8129999999" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/mobileLine"
+            style="@style/proifleDetailsView" />
+
+        <RelativeLayout
+            android:id="@+id/emailLayout"
+            style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/emailImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_baseline_email_40" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toEndOf="@id/emailImageView"
+                android:text="@string/login_email_hint" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                style="@style/profileDetailsMiniText"
+                android:layout_toEndOf="@id/emailImageView"
+                tools:text="developer@appsnipp.com" />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/emailLine"
+            style="@style/proifleDetailsView" />
+
+        <RelativeLayout
+            android:id="@+id/addressLayout"
+            style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/addressImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_baseline_location_on_40" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toEndOf="@id/addressImageView"
+                android:text="@string/location" />
+
+            <TextView
+                android:id="@+id/tv_location"
+                style="@style/profileDetailsMiniText"
+                android:layout_toEndOf="@id/addressImageView"
+                tools:text="Avenue 2nd Street NW SY." />
+
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/addressLine"
+            style="@style/proifleDetailsView" />
+
+        <RelativeLayout
+            android:id="@+id/descriptionLayout"
+            style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/descImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_baseline_description_40" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toEndOf="@id/descImageView"
+                android:text="@string/description" />
+
+            <TextView
+                android:id="@+id/tv_desc"
+                style="@style/profileDetailsMiniText"
+                android:layout_toEndOf="@id/descImageView"
+                tools:text="profession" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/descriptionLine"
+            style="@style/proifleDetailsView" />
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

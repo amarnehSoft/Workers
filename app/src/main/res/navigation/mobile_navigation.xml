@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_news_feed">
+
+    <fragment
+        android:id="@+id/nav_news_feed"
+        android:name="com.amarneh.workers.ui.feed.FeedFragment"
+        android:label="@string/news_feed"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
+        android:id="@+id/nav_requests"
+        android:name="com.amarneh.workers.ui.requests.RequestsFragment"
+        android:label="@string/requests"
+        tools:layout="@layout/fragment_requests" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.amarneh.workers.ui.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/activity_profile" />
+
+    <fragment
+        android:id="@+id/nav_users"
+        android:name="com.amarneh.workers.ui.users.UsersFragment"
+        android:label="@string/users"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
+        android:id="@+id/nav_companies"
+        android:name="com.amarneh.workers.ui.users.CompaniesFragment"
+        android:label="@string/companies"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
+        android:id="@+id/nav_team"
+        android:name="com.amarneh.workers.ui.team.TeamFragment"
+        android:label="@string/my_team"
+        tools:layout="@layout/fragment_users" />
+
+    <fragment
+        android:id="@+id/nav_logout"
+        android:name="com.amarneh.workers.ui.gallery.LogoutFragment"
+        android:label="@string/logout"
+        tools:layout="@layout/fragment_gallery" />
+</navigation>

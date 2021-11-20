@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/nav_news_feed"
+            android:icon="@drawable/ic_baseline_work_24"
+            android:title="@string/news_feed" />
+        <item
+            android:id="@+id/nav_requests"
+            android:icon="@drawable/ic_baseline_notifications_24"
+            android:title="@string/requests" />
+        <item
+            android:id="@+id/nav_profile"
+            android:icon="@drawable/ic_account_circle_black_48dp"
+            android:iconTint="#3698A7"
+            android:title="@string/profile" />
+
+        <item
+            android:id="@+id/nav_team"
+            android:icon="@drawable/ic_baseline_group_work_24"
+            android:title="@string/my_team" />
+
+        <item
+            android:id="@+id/nav_users"
+            android:icon="@drawable/ic_baseline_group_24"
+            android:title="@string/users" />
+
+        <item
+            android:id="@+id/nav_companies"
+            android:icon="@drawable/ic_baseline_supervised_user_circle_24"
+            android:title="@string/companies" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/ic_baseline_login_24"
+            android:title="@string/logout" />
+    </group>
+</menu>
