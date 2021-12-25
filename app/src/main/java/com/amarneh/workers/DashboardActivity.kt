@@ -66,6 +66,7 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 else -> {
                     setOf(
+                        R.id.nav_about,
                         R.id.nav_users,
                         R.id.nav_companies,
                         R.id.nav_logout
@@ -101,7 +102,7 @@ class DashboardActivity : AppCompatActivity() {
             }
             else -> {
                 navView.inflateMenu(R.menu.activity_main_guest)
-                navController.navigate(R.id.nav_users)
+                navController.navigate(R.id.nav_about)
             }
         }
 

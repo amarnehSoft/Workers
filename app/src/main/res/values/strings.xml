@@ -91,4 +91,6 @@
     <string name="details">تفاصيل</string>
     <string name="ok">Ok</string>
     <string name="title_activity_login33">LoginActivity33</string>
+    <string name="about">حول</string>
+    <string name="about_desc">تطبيق صنعة يوفر فرص عمل للمهنين ويسهل على المشغلين التواصل وايجاد المهنيين ويزيد لكل منهما بنسبة الفرص للحصول على العمل قم بالتسجيل الان وتمتع بمميزات التطبيق</string>
 </resources>

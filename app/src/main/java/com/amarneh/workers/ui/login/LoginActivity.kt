@@ -39,121 +39,108 @@ class LoginActivity : AppCompatActivity() {
 
         super.onCreate(savedInstanceState)
 
-        if (Firebase.auth.currentUser != null) {
-            User.retrieveUserInfo(lifecycleScope) {
-                startActivity(Intent(this@LoginActivity, DashboardActivity::class.java))
-                finish()
-            }
-        } else {
-            // for changing status bar icon colors
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
-            }
+        // for changing status bar icon colors
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            window.decorView.systemUiVisibility = View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR
+        }
 
-            binding = ActivityLoginBinding.inflate(layoutInflater)
-            setContentView(binding.root)
+        binding = ActivityLoginBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-            val username = binding.editTextEmail
-            val password = binding.editTextPassword
-            val login = binding.cirLoginButton
-            val loginGuest = binding.cirGuestButton
+        val username = binding.editTextEmail
+        val password = binding.editTextPassword
+        val login = binding.cirLoginButton
 
-            // val loading = binding.loading
+        // val loading = binding.loading
 
-            loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
-                .get(LoginViewModel::class.java)
+        loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
+            .get(LoginViewModel::class.java)
 
-            loginViewModel.loginFormState.observe(
-                this@LoginActivity,
-                Observer {
-                    val loginState = it ?: return@Observer
+        loginViewModel.loginFormState.observe(
+            this@LoginActivity,
+            Observer {
+                val loginState = it ?: return@Observer
 
-                    // disable login button unless both username / password is valid
-                    login.isEnabled = loginState.isDataValid
+                // disable login button unless both username / password is valid
+                login.isEnabled = loginState.isDataValid
 
-                    if (loginState.usernameError != null) {
-                        username.error = getString(loginState.usernameError)
-                    }
-                    if (loginState.passwordError != null) {
-                        password.error = getString(loginState.passwordError)
-                    }
+                if (loginState.usernameError != null) {
+                    username.error = getString(loginState.usernameError)
                 }
-            )
-
-            loginViewModel.loginResult.observe(
-                this@LoginActivity,
-                Observer {
-                    val loginResult = it ?: return@Observer
-                    login.revertAnimation()
-                    // loading.visibility = View.GONE
-                    if (loginResult.error != null) {
-                        showLoginFailed(loginResult.error)
-                    }
-                    if (loginResult.success != null) {
-                        updateUiWithUser(loginResult.success)
-                    }
+                if (loginState.passwordError != null) {
+                    password.error = getString(loginState.passwordError)
                 }
-            )
+            }
+        )
 
-            username.afterTextChanged {
+        loginViewModel.loginResult.observe(
+            this@LoginActivity,
+            Observer {
+                val loginResult = it ?: return@Observer
+                login.revertAnimation()
+                // loading.visibility = View.GONE
+                if (loginResult.error != null) {
+                    showLoginFailed(loginResult.error)
+                }
+                if (loginResult.success != null) {
+                    updateUiWithUser(loginResult.success)
+                }
+            }
+        )
+
+        username.afterTextChanged {
+            loginViewModel.loginDataChanged(
+                username.text.toString(),
+                password.text.toString()
+            )
+        }
+
+        password.apply {
+            afterTextChanged {
                 loginViewModel.loginDataChanged(
                     username.text.toString(),
                     password.text.toString()
                 )
             }
 
-            password.apply {
-                afterTextChanged {
-                    loginViewModel.loginDataChanged(
-                        username.text.toString(),
-                        password.text.toString()
-                    )
-                }
-
-                setOnEditorActionListener { _, actionId, _ ->
-                    when (actionId) {
-                        EditorInfo.IME_ACTION_DONE ->
-                            loginViewModel.login(
-                                username.text.toString(),
-                                password.text.toString()
-                            )
-                    }
-                    false
-                }
-
-                login.setOnClickListener {
-                    // loading.visibility = View.VISIBLE
-                    login.startAnimation()
-                    loginViewModel.login(username.text.toString(), password.text.toString())
-                }
-            }
-
-            loginGuest.setOnClickListener {
-                loginGuest.startAnimation()
-                loginViewModel.login("g@g.com", "123123")
-            }
-
-            binding.tvReset.setOnClickListener {
-                if (loginViewModel.isEmailValid(binding.editTextEmail.text?.toString().orEmpty())) {
-                    lifecycleScope.launch {
-                        Firebase.auth.sendPasswordResetEmail(
-                            binding.editTextEmail.text?.toString().orEmpty()
-                        ).await()
-                        Toast.makeText(
-                            this@LoginActivity,
-                            "Please check your email",
-                            Toast.LENGTH_LONG
+            setOnEditorActionListener { _, actionId, _ ->
+                when (actionId) {
+                    EditorInfo.IME_ACTION_DONE ->
+                        loginViewModel.login(
+                            username.text.toString(),
+                            password.text.toString()
                         )
-                            .show()
-                    }
-                } else {
+                }
+                false
+            }
+
+            login.setOnClickListener {
+                // loading.visibility = View.VISIBLE
+                login.startAnimation()
+                loginViewModel.login(username.text.toString(), password.text.toString())
+            }
+        }
+
+        binding.tvReset.setOnClickListener {
+            if (loginViewModel.isEmailValid(binding.editTextEmail.text?.toString().orEmpty())) {
+                lifecycleScope.launch {
+                    Firebase.auth.sendPasswordResetEmail(
+                        binding.editTextEmail.text?.toString().orEmpty()
+                    ).await()
                     Toast.makeText(
                         this@LoginActivity,
-                        "Please enter a valid email",
+                        "Please check your email",
                         Toast.LENGTH_LONG
                     )
                         .show()
                 }
+            } else {
+                Toast.makeText(
+                    this@LoginActivity,
+                    "Please enter a valid email",
+                    Toast.LENGTH_LONG
+                )
+                    .show()
             }
         }
     }
