@@ -4,14 +4,21 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
+<!--        <item-->
+<!--            android:id="@+id/nav_news_feed"-->
+<!--            android:icon="@drawable/ic_baseline_work_24"-->
+<!--            android:title="@string/news_feed" />-->
+
         <item
-            android:id="@+id/nav_news_feed"
-            android:icon="@drawable/ic_baseline_work_24"
-            android:title="@string/news_feed" />
+            android:id="@+id/nav_users"
+            android:icon="@drawable/ic_baseline_group_24"
+            android:title="@string/users" />
+
         <item
             android:id="@+id/nav_requests"
             android:icon="@drawable/ic_baseline_notifications_24"
             android:title="@string/requests" />
+
         <item
             android:id="@+id/nav_profile"
             android:iconTint="#3698A7"
@@ -22,11 +29,6 @@
             android:id="@+id/nav_team"
             android:icon="@drawable/ic_baseline_group_work_24"
             android:title="@string/my_team" />
-
-        <item
-            android:id="@+id/nav_users"
-            android:icon="@drawable/ic_baseline_group_24"
-            android:title="@string/users" />
 
         <item
             android:id="@+id/nav_logout"

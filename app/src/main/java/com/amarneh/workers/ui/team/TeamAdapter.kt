@@ -82,7 +82,7 @@ open class TeamAdapter(
                 }
             }
 
-            nameView.text = worker?.name
+            nameView.text = worker?.fullName
             // itemView.context.getString(R.string.requested_to_join, request!!.fromName)
 
 // Mohammad amarneh want to join

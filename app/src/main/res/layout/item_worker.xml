@@ -45,6 +45,16 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Mohammad Amarneh" />
 
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_call"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="?attr/selectableItemBackground"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@id/tv_name"
+                app:srcCompat="@android:drawable/sym_action_call" />
+
             <TextView
                 android:id="@+id/tv_profession"
                 android:layout_width="wrap_content"
@@ -65,12 +75,12 @@
             <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
                 android:id="@+id/btn_request"
                 style="@style/loginButton"
-                android:background="@drawable/button_background_green"
                 android:layout_width="100dp"
                 android:layout_height="35dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginBottom="8dp"
+                android:background="@drawable/button_background_green"
                 android:text="@string/request"
                 app:initialCornerAngle="27dp"
                 app:layout_constraintEnd_toEndOf="parent"

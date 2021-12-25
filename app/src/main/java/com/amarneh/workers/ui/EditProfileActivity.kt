@@ -35,11 +35,15 @@ class EditProfileActivity : AppCompatActivity() {
 
             val newUser = user.copy(
                 name = binding.editTextName.string(),
+                fatherName = binding.editTextFamily.string(),
+                familyName = binding.editTextFamily.string(),
                 email = binding.editTextEmail.string(),
                 phone = binding.editTextMobile.string(),
                 desc = binding.editTextDescription.string(),
                 location = binding.editTextLocation.string(),
-                profession = binding.btnProfession.text.toString()
+                profession = binding.btnProfession.text.toString(),
+                cardId = binding.editTextCardId.string(),
+                companyName = binding.editTextCompany.string()
             )
             lifecycleScope.launch {
                 Firebase.firestore.collection("users").document(userId).set(newUser).await()
@@ -52,7 +56,9 @@ class EditProfileActivity : AppCompatActivity() {
         binding.btnProfession.setOnClickListener {
             val menu = PopupMenu(this, binding.btnProfession)
 
-            professions.forEach { profession ->
+            professions.map {
+                it.first
+            }.forEach { profession ->
                 menu.menu.add(profession).setOnMenuItemClickListener {
                     binding.btnProfession.text = profession
                     true
@@ -66,6 +72,10 @@ class EditProfileActivity : AppCompatActivity() {
         this.user = user
         with(binding) {
             editTextName.setText(user.name)
+            editTextFather.setText(user.fatherName)
+            editTextFamily.setText(user.familyName)
+            editTextCompany.setText(user.companyName)
+            editTextCardId.setText(user.cardId)
             editTextEmail.setText(user.email)
             editTextMobile.setText(user.phone)
             editTextDescription.setText(user.desc)

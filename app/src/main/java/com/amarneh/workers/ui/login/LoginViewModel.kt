@@ -13,8 +13,7 @@ import kotlinx.coroutines.launch
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
-    // false -> company
-    var userType: Int = 0
+    var userType: Int = 1
 
     private val _loginForm = MutableLiveData<LoginFormState>()
     val loginFormState: LiveData<LoginFormState> = _loginForm
@@ -42,25 +41,35 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
 
     fun register(
         name: String,
+        fatherName: String,
+        familyName: String,
         email: String,
         password: String,
+        cardId: String,
         location: String,
         phone: String,
+        companyName: String,
         description: String,
-        profession: String
+        profession: String,
+        category: String
     ) {
         // can be launched in a separate asynchronous job
         viewModelScope.launch {
             val user = User(
-                "",
-                name,
-                email,
-                password,
-                location,
-                profession,
-                description,
-                phone,
-                userType
+                id = "",
+                name = name,
+                fatherName = fatherName,
+                familyName = familyName,
+                email = email,
+                password = password,
+                cardId = cardId,
+                location = location,
+                profession = profession,
+                category = category,
+                desc = description,
+                companyName = companyName,
+                phone = phone,
+                type = userType
             )
             val result = loginRepository.register(user)
             if (result is Result.Success) {
@@ -88,9 +97,8 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         password: String,
         repeatPassword: String,
         phone: String,
-        location: String,
         profession: String,
-        desc: String
+        cardId: String
     ) {
         if (name.isEmpty()) {
             _registerForm.value = RegisterFormState(usernameError = R.string.invalid_username)
@@ -101,9 +109,11 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         } else if (repeatPassword != password) {
             _registerForm.value =
                 RegisterFormState(repeatPasswordError = R.string.invalid_repeat_password)
+        } else if (cardId.length != 13) {
+            _registerForm.value = RegisterFormState(cardIdError = R.string.invalid_card_id)
         } else if (phone.isEmpty() && userType != User.TYPE_GUEST) {
             _registerForm.value = RegisterFormState(phoneError = R.string.invalid_phone)
-        } else if (profession == "المهنة" && userType == User.TYPE_COMPANY) {
+        } else if (profession == "المهنة" && userType == User.TYPE_WORKER) {
             _registerForm.value = RegisterFormState(professionError = R.string.invalid_profession)
         } else {
             _registerForm.value = RegisterFormState(isDataValid = true)

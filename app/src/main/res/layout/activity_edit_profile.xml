@@ -7,9 +7,9 @@
     tools:context=".ui.EditProfileActivity">
 
     <androidx.core.widget.NestedScrollView
-        app:layout_constraintTop_toTopOf="parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
@@ -38,6 +38,32 @@
                 </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputFather"
+                    style="@style/parent"
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextFather"
+                        style="@style/modifiedEditText"
+                        android:hint="@string/name_father"
+                        android:inputType="textPersonName"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputFamily"
+                    style="@style/parent"
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextFamily"
+                        style="@style/modifiedEditText"
+                        android:hint="@string/name_family"
+                        android:inputType="textPersonName"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputEmail"
                     style="@style/parent"
                     android:layout_marginTop="@dimen/loginViewsMargin">
@@ -45,8 +71,21 @@
                     <com.google.android.material.textfield.TextInputEditText
                         android:id="@+id/editTextEmail"
                         style="@style/modifiedEditText"
-                        android:hint="@string/login_email_hint"
+                        android:hint="@string/register_email_hint"
                         android:inputType="textEmailAddress"
+                        android:maxLines="1" />
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputCardId"
+                    style="@style/parent"
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextCardId"
+                        style="@style/modifiedEditText"
+                        android:hint="@string/mobile_card_id"
+                        android:inputType="text"
                         android:maxLines="1" />
                 </com.google.android.material.textfield.TextInputLayout>
 
@@ -78,10 +117,22 @@
 
                 <Button
                     android:id="@+id/btnProfession"
-                    android:text="@string/profession"
                     android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:layout_height="wrap_content" />
+                    android:text="@string/profession" />
+
+                <com.google.android.material.textfield.TextInputLayout
+                    android:id="@+id/textInputComapny"
+                    style="@style/parent"
+                    android:layout_marginTop="@dimen/loginViewsMargin">
+
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/editTextCompany"
+                        style="@style/modifiedEditText"
+                        android:hint="@string/name_company"
+                        android:inputType="text" />
+                </com.google.android.material.textfield.TextInputLayout>
 
                 <com.google.android.material.textfield.TextInputLayout
                     android:id="@+id/textInputDescription"

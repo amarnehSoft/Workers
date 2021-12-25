@@ -73,7 +73,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun initUser(user: User) {
-        binding.tvName.text = user.name
+        binding.tvName.text = user.fullName
         binding.tvProfession.text = user.profession
 
         with(binding.layout) {
@@ -81,6 +81,8 @@ class ProfileFragment : Fragment() {
             tvMobile.text = user.phone
             tvDesc.text = user.desc
             tvLocation.text = user.location
+            tvCompany.text = user.companyName
+            tvCardId.text = user.cardId
 
             if (user.type == User.TYPE_GUEST) {
                 mobileLayout.visibility = View.GONE
@@ -89,6 +91,9 @@ class ProfileFragment : Fragment() {
                 descriptionLine.visibility = View.GONE
                 addressLayout.visibility = View.GONE
                 addressLine.visibility = View.GONE
+                companyLayout.visibility = View.GONE
+                companyLine.visibility = View.GONE
+                cardIdLayout.visibility = View.GONE
             } else {
                 mobileLayout.visibility = View.VISIBLE
                 mobileLine.visibility = View.VISIBLE
@@ -96,10 +101,13 @@ class ProfileFragment : Fragment() {
                 descriptionLine.visibility = View.VISIBLE
                 addressLayout.visibility = View.VISIBLE
                 addressLine.visibility = View.VISIBLE
+                companyLayout.visibility = View.VISIBLE
+                companyLine.visibility = View.VISIBLE
+                cardIdLayout.visibility = View.VISIBLE
             }
         }
 
-        if (user.type == User.TYPE_COMPANY) {
+        if (user.type == User.TYPE_WORKER) {
             binding.tvProfession.visibility = View.VISIBLE
         } else {
             binding.tvProfession.visibility = View.GONE

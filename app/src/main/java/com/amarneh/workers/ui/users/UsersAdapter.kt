@@ -1,10 +1,21 @@
 package com.amarneh.workers.ui.users
 
+import android.Manifest
+import android.content.Context
+import android.content.Intent
+import android.content.pm.PackageManager
+import android.net.Uri
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.widget.AppCompatImageView
+import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -65,6 +76,7 @@ open class UsersAdapter(
         var locationView: TextView
         var btnRequest: CircularProgressButton
         var btnProfile: CircularProgressButton
+        var ivCall: AppCompatImageView
 
         fun bind(
             snapshot: DocumentSnapshot,
@@ -95,7 +107,7 @@ open class UsersAdapter(
                 }
             }
 
-            nameView.text = user!!.name
+            nameView.text = user!!.fullName
             professionView.text = user.profession
             locationView.text = user.location
 
@@ -115,32 +127,43 @@ open class UsersAdapter(
             }
 
             btnRequest.setOnClickListener {
-                btnRequest.startAnimation()
-                val id = UUID.randomUUID().toString()
-                // val fromId = Firebase.auth.currentUser?.uid.orEmpty()
-                val fromUser = User.user!!
-                scope.launch {
-                    val r = Request(
-                        id = id,
-                        fromId = fromUser.id,
-                        toId = user.id,
-                        fromName = fromUser.name,
-                        toName = user.name,
-                        creationDate = System.currentTimeMillis(),
-                        status = Request.STATUS_PENDING,
-                        updateDate = System.currentTimeMillis()
-                    )
-
-                    Firebase.firestore.collection("requests").document(id).set(r).await()
-                    User.requests.add(r)
-                    btnRequest.visibility = View.GONE
-                    adapter.notifyDataSetChanged()
-                }
+                showDialog(btnRequest.context, user)
             }
 
             btnProfile.setOnClickListener {
                 fragment.findNavController()
                     .navigate(R.id.nav_profile, bundleOf("userId" to user.id))
+            }
+
+            ivCall.setOnClickListener {
+//                val intent = Intent(Intent.ACTION_CALL)
+//
+//                intent.data = Uri.parse("tel:" + user.phone)
+//                it.context.startActivity(intent)
+
+                val number = "tel:" + user.phone
+                val mIntent = Intent(Intent.ACTION_CALL)
+                mIntent.setData(Uri.parse(number))
+                if (ContextCompat.checkSelfPermission(
+                        fragment.requireActivity(),
+                        Manifest.permission.CALL_PHONE
+                    ) != PackageManager.PERMISSION_GRANTED
+                ) {
+                    ActivityCompat.requestPermissions(
+                        fragment.requireActivity(), arrayOf(Manifest.permission.CALL_PHONE), 1
+                    )
+
+                    // MY_PERMISSIONS_REQUEST_CALL_PHONE is an
+                    // app-defined int constant. The callback method gets the
+                    // result of the request.
+                } else {
+                    // You already have permission
+                    try {
+                        fragment.requireActivity().startActivity(mIntent)
+                    } catch (e: SecurityException) {
+                        e.printStackTrace()
+                    }
+                }
             }
         }
 
@@ -151,6 +174,53 @@ open class UsersAdapter(
             locationView = itemView.findViewById(R.id.tv_location)
             btnRequest = itemView.findViewById(R.id.btn_request)
             btnProfile = itemView.findViewById(R.id.btn_profile)
+            ivCall = itemView.findViewById(R.id.iv_call)
+        }
+
+        fun showDialog(context: Context, user: User) {
+            val alert: AlertDialog.Builder = AlertDialog.Builder(context)
+            val edittext = EditText(context)
+            alert.setMessage(context.getString(R.string.details))
+            alert.setTitle(context.getString(R.string.details))
+
+            alert.setView(edittext)
+
+            alert.setPositiveButton(
+                context.getString(R.string.request)
+            ) { dialog, whichButton -> // What ever you want to do with the value
+                val details = edittext.text
+
+                btnRequest.startAnimation()
+                val id = UUID.randomUUID().toString()
+                // val fromId = Firebase.auth.currentUser?.uid.orEmpty()
+                val fromUser = User.user!!
+                scope.launch {
+                    val r = Request(
+                        id = id,
+                        fromId = fromUser.id,
+                        toId = user.id,
+                        fromName = fromUser.fullName,
+                        toName = user.fullName,
+                        creationDate = System.currentTimeMillis(),
+                        status = Request.STATUS_PENDING,
+                        updateDate = System.currentTimeMillis(),
+                        details = details.toString()
+                    )
+
+                    Firebase.firestore.collection("requests").document(id).set(r).await()
+                    User.requests.add(r)
+                    btnRequest.visibility = View.GONE
+                    adapter.notifyDataSetChanged()
+                }
+            }
+
+            alert.setNegativeButton(
+                context.getString(R.string.cancel)
+            ) { dialog, whichButton ->
+                dialog.dismiss()
+            }
+
+            alert.show()
         }
     }
 }

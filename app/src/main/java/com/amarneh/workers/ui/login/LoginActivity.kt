@@ -56,6 +56,8 @@ class LoginActivity : AppCompatActivity() {
             val username = binding.editTextEmail
             val password = binding.editTextPassword
             val login = binding.cirLoginButton
+            val loginGuest = binding.cirGuestButton
+
             // val loading = binding.loading
 
             loginViewModel = ViewModelProvider(this, LoginViewModelFactory())
@@ -124,6 +126,11 @@ class LoginActivity : AppCompatActivity() {
                     login.startAnimation()
                     loginViewModel.login(username.text.toString(), password.text.toString())
                 }
+            }
+
+            loginGuest.setOnClickListener {
+                loginGuest.startAnimation()
+                loginViewModel.login("g@g.com", "123123")
             }
 
             binding.tvReset.setOnClickListener {

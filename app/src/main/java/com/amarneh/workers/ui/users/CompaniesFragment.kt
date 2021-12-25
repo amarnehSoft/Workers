@@ -9,6 +9,6 @@ class CompaniesFragment : UsersFragment() {
     }
 
     override fun showProfession(): Boolean {
-        return true
+        return false
     }
 }

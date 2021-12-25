@@ -36,7 +36,7 @@ class CreatePostActivity : AppCompatActivity() {
                 val feed = Feed(
                     id = id,
                     userId = userId,
-                    userName = user?.name.orEmpty(),
+                    userName = user?.fullName.orEmpty(),
                     content = content,
                     creationDate = System.currentTimeMillis()
                 )

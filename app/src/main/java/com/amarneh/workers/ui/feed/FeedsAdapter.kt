@@ -89,10 +89,14 @@ open class FeedsAdapter(
                         .error(R.drawable.ic_account_circle_black_48dp)
                         .into(imageView)
                 } catch (e: Exception) {
-                    Glide.with(itemView)
-                        .load(R.drawable.ic_account_circle_black_48dp)
-                        .circleCrop()
-                        .into(imageView)
+                    try {
+                        Glide.with(itemView)
+                            .load(R.drawable.ic_account_circle_black_48dp)
+                            .circleCrop()
+                            .into(imageView)
+                    } catch (e: java.lang.Exception) {
+                        e.printStackTrace()
+                    }
                 }
             }
 
@@ -124,7 +128,7 @@ open class FeedsAdapter(
                         id = id,
                         fromId = fromId,
                         toId = feed.userId,
-                        fromName = user?.name.orEmpty(),
+                        fromName = user?.fullName.orEmpty(),
                         toName = feed.userName,
                         creationDate = System.currentTimeMillis(),
                         status = Request.STATUS_PENDING,

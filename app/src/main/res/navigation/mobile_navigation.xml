@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/nav_news_feed">
+    app:startDestination="@+id/nav_logout">
 
-    <fragment
-        android:id="@+id/nav_news_feed"
-        android:name="com.amarneh.workers.ui.feed.FeedFragment"
-        android:label="@string/news_feed"
-        tools:layout="@layout/fragment_users" />
+<!--    <fragment-->
+<!--        android:id="@+id/nav_news_feed"-->
+<!--        android:name="com.amarneh.workers.ui.feed.FeedFragment"-->
+<!--        android:label="@string/news_feed"-->
+<!--        tools:layout="@layout/fragment_users" />-->
 
     <fragment
         android:id="@+id/nav_requests"
@@ -43,7 +43,7 @@
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.amarneh.workers.ui.gallery.LogoutFragment"
+        android:name="com.amarneh.workers.ui.logout.LogoutFragment"
         android:label="@string/logout"
         tools:layout="@layout/fragment_gallery" />
 </navigation>

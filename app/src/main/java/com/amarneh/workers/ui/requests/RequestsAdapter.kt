@@ -51,6 +51,7 @@ open class RequestsAdapter(
         RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView
         var nameView: TextView
+        var detailsView: TextView
         var btnAccept: CircularProgressButton
         var btnDeny: CircularProgressButton
         var btnProfile: CircularProgressButton
@@ -86,7 +87,8 @@ open class RequestsAdapter(
             nameView.text =
                 itemView.context.getString(R.string.requested_to_join, request!!.fromName)
 
-// Mohammad amarneh want to join
+            detailsView.text = request.details
+
             // Click listener
             itemView.setOnClickListener { listener?.onItemSelected(snapshot) }
 
@@ -155,6 +157,7 @@ open class RequestsAdapter(
         init {
             imageView = itemView.findViewById(R.id.iv_profile)
             nameView = itemView.findViewById(R.id.tv_content)
+            detailsView = itemView.findViewById(R.id.tv_details)
             btnAccept = itemView.findViewById(R.id.btn_accept)
             btnDeny = itemView.findViewById(R.id.btn_deny)
             btnProfile = itemView.findViewById(R.id.btn_profile)

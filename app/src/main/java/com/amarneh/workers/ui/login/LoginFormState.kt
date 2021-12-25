@@ -18,6 +18,7 @@ data class RegisterFormState(
     val locationError: Int? = null,
     val professionError: Int? = null,
     val descError: Int? = null,
+    val cardIdError: Int? = null,
 
     val isDataValid: Boolean = false
 )

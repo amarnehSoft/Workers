@@ -8,7 +8,8 @@ data class Request(
     val toName: String = "",
     val creationDate: Long = 0,
     val status: Int = 0, // 0 pending, 1 approved, 2 denied
-    val updateDate: Long = 0
+    val updateDate: Long = 0,
+    val details: String = ""
 ) {
     companion object {
         const val STATUS_PENDING = 0

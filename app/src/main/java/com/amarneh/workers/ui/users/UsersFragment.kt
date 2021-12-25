@@ -27,7 +27,7 @@ open class UsersFragment : Fragment(R.layout.fragment_users), UsersAdapter.OnIte
     private var adapter: UsersAdapter? = null
 
     open fun userType(): Int = User.TYPE_WORKER
-    open fun showProfession(): Boolean = false
+    open fun showProfession(): Boolean = true
 
     private val selectedProfessions: MutableList<String> = mutableListOf()
     lateinit var profession: Button
@@ -46,6 +46,8 @@ open class UsersFragment : Fragment(R.layout.fragment_users), UsersAdapter.OnIte
         }
 
         rv.layoutManager = LinearLayoutManager(requireContext())
+
+//        val userType = User.user!!.type
 
         query = Firebase.firestore.collection("users")
             .whereEqualTo("type", userType())
@@ -105,8 +107,8 @@ open class UsersFragment : Fragment(R.layout.fragment_users), UsersAdapter.OnIte
     private fun showAlertDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alertDialog.setTitle(getString(R.string.profession))
-        val items = professions.toTypedArray()
-        val checkedItems = professions.map {
+        val items = professions.map { it.first }.toTypedArray()
+        val checkedItems = items.map {
             selectedProfessions.contains(it)
         }.toBooleanArray()
         // booleanArrayOf(false, false, false, false, false, false)

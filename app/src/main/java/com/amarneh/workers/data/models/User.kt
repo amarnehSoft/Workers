@@ -12,15 +12,23 @@ import java.util.UUID
 data class User(
     val id: String = "",
     val name: String = "",
+    val fatherName: String = "",
+    val familyName: String = "",
+    val companyName: String = "",
     val email: String = "",
     val password: String = "",
     val location: String = "",
     val profession: String = "",
+    val category: String = "",
     val desc: String = "",
     val phone: String = "",
+    val cardId: String = "",
     val type: Int = 0 // 0 -> guest, 1 -> worker, 2 -> company
     // val imageUrl: String = ""
 ) {
+
+    val fullName: String get() = "$name $fatherName $familyName"
+
     companion object {
         const val TYPE_GUEST = 0
         const val TYPE_WORKER = 1

@@ -39,6 +39,11 @@
                     android:layout_alignParentTop="true"
                     android:layout_alignParentEnd="true"
                     android:src="@drawable/ic_login_hero" />
+
+                <TextView
+                    android:id="@+id/textView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
             </RelativeLayout>
 
             <LinearLayout
@@ -50,16 +55,16 @@
                 android:background="@drawable/bg_manager_mode_toggle"
                 android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv_guest"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:padding="8dp"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:text="@string/guest"
-                    android:textColor="@color/white"
-                    tools:background="@drawable/bg_manager_mode_toggle_left" />
+<!--                <TextView-->
+<!--                    android:id="@+id/tv_guest"-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:padding="8dp"-->
+<!--                    android:paddingStart="16dp"-->
+<!--                    android:paddingEnd="16dp"-->
+<!--                    android:text="@string/guest"-->
+<!--                    android:textColor="@color/white"-->
+<!--                    tools:background="@drawable/bg_manager_mode_toggle_left" />-->
 
                 <TextView
                     android:id="@+id/worker"
@@ -111,6 +116,32 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputFather"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextFather"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/name_father"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputFamily"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextFamily"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/name_family"
+                            android:inputType="textPersonName"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputEmail"
                         style="@style/parent"
                         android:layout_marginTop="@dimen/loginViewsMargin">
@@ -118,7 +149,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextEmail"
                             style="@style/modifiedEditText"
-                            android:hint="@string/login_email_hint"
+                            android:hint="@string/register_email_hint"
                             android:inputType="textEmailAddress"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -131,7 +162,7 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextPassword"
                             style="@style/modifiedEditText"
-                            android:hint="@string/login_password_hint"
+                            android:hint="@string/register_password_hint"
                             android:inputType="textPassword"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
@@ -146,6 +177,19 @@
                             style="@style/modifiedEditText"
                             android:hint="@string/login_repeat_password_hint"
                             android:inputType="textPassword"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputCardId"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextCardId"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/mobile_card_id"
+                            android:inputType="text"
                             android:maxLines="1" />
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -181,6 +225,26 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="20dp"
                         android:text="@string/profession" />
+
+                    <Button
+                        android:id="@+id/btnCategory"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="شامل" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:id="@+id/textInputCompany"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:id="@+id/editTextCompany"
+                            style="@style/modifiedEditText"
+                            android:hint="@string/name_company"
+                            android:inputType="text"
+                            android:maxLines="1" />
+                    </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
                         android:id="@+id/textInputDescription"

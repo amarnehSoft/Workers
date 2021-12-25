@@ -16,10 +16,13 @@
     <string name="register_failed">خطأ في انشاء الحساب</string>
     <string name="invalid_phone">رقم الهاتف اجباري</string>
     <string name="invalid_profession">المهنة اجبارية</string>
+    <string name="invalid_card_id">يجب ان يتكون رقم الهوية من ١٣ خانة</string>
 
     <string name="login_email_hint">الايميل</string>
+    <string name="register_email_hint">الايميل(اجباري)</string>
     <string name="login_password_hint">كلمة المرور</string>
-    <string name="login_repeat_password_hint">اعد كتابة كلمة المرور</string>
+    <string name="register_password_hint">كلمة المرور(اجباري)</string>
+    <string name="login_repeat_password_hint">اعد كتابة كلمة المرور(اجباري)</string>
     <string name="title_activity_dashboard">DashboardActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -40,16 +43,22 @@
     <string name="title_activity_profile">الحساب</string>
     <string name="location">الموقع</string>
     <string name="profession">المهنة</string>
+    <string name="category">التخصص</string>
     <string name="description">تفاصيل</string>
-    <string name="name">الاسم</string>
-    <string name="mobile_number">رقم المحمول</string>
+    <string name="name">الاسم الاول(اجباري)</string>
+    <string name="name_father">اسم الاب</string>
+    <string name="name_family">اسم العائلة</string>
+    <string name="name_company">اسم الشركة</string>
+    <string name="mobile_number">رقم المحمول(اجباري)</string>
+    <string name="mobile_card_id">رقم الهوية(اجباري)</string>
+    <string name="card_id">رقم الهوية</string>
     <string name="register">إنشاء حساب</string>
     <string name="edit">تعديل</string>
     <string name="apply">تقدم</string>
     <string name="hire">توظيف</string>
-    <string name="users">العمال</string>
+    <string name="users">المهنيين</string>
     <string name="search">بحث</string>
-    <string name="companies">المقاولين</string>
+    <string name="companies">المشغلين</string>
     <string name="create_post">إنشاء اعلان</string>
     <string name="write_a_post">اكتب إعلان</string>
     <string name="post">نشر</string>
@@ -64,8 +73,8 @@
     <string name="back">رجوع</string>
     <string name="account_info">تفاصيل الحساب</string>
     <string name="guest">ضيف</string>
-    <string name="worker">عامل</string>
-    <string name="company">مقاول</string>
+    <string name="worker">مهني</string>
+    <string name="company">مشغل</string>
     <string name="delete">حذف</string>
     <string name="no_data_to_show">لا يوجد بيانات لعرضها!</string>
     <string name="denied">مرفوض</string>
@@ -77,5 +86,9 @@
     <string name="already_have_an_account">لديك حساب بالفعل؟</string>
     <string name="mobile">المحمول</string>
     <string name="login">تسجيل الدخول</string>
+    <string name="login_guest">تسجيل الدخول كزائر</string>
     <string name="new_user_register_now">مستخدم جديد؟ إنشاء حساب</string>
+    <string name="details">تفاصيل</string>
+    <string name="ok">Ok</string>
+    <string name="title_activity_login33">LoginActivity33</string>
 </resources>

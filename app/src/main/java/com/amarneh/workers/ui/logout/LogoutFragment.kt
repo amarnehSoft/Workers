@@ -1,4 +1,4 @@
-package com.amarneh.workers.ui.gallery
+package com.amarneh.workers.ui.logout
 
 import android.content.Intent
 import android.os.Bundle
@@ -14,7 +14,7 @@ import com.google.firebase.ktx.Firebase
 
 class LogoutFragment : Fragment() {
 
-    private lateinit var galleryViewModel: GalleryViewModel
+    private lateinit var logoutViewModel: LogoutViewModel
     private var _binding: FragmentGalleryBinding? = null
 
     // This property is only valid between onCreateView and
@@ -26,8 +26,8 @@ class LogoutFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        galleryViewModel =
-            ViewModelProvider(this).get(GalleryViewModel::class.java)
+        logoutViewModel =
+            ViewModelProvider(this).get(LogoutViewModel::class.java)
 
         _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root

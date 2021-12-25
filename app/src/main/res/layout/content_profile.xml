@@ -23,6 +23,30 @@
         <View style="@style/proifleDetailsView" />
 
         <RelativeLayout
+            android:id="@+id/cardIdLayout"
+            style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/cardIdImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_baseline_perm_identity_24" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toEndOf="@id/cardIdImageView"
+                android:text="@string/card_id" />
+
+            <TextView
+                android:id="@+id/tv_card_id"
+                style="@style/profileDetailsMiniText"
+                android:layout_toEndOf="@id/cardIdImageView"
+                tools:text="8129999999" />
+
+        </RelativeLayout>
+
+        <View style="@style/proifleDetailsView" />
+
+        <RelativeLayout
             android:id="@+id/mobileLayout"
             style="@style/profileDetailsLayout">
 
@@ -98,6 +122,31 @@
 
         <View
             android:id="@+id/addressLine"
+            style="@style/proifleDetailsView" />
+
+        <RelativeLayout
+            android:id="@+id/companyLayout"
+            style="@style/profileDetailsLayout">
+
+            <ImageView
+                android:id="@+id/companyImageView"
+                style="@style/profileDetailsImage"
+                android:src="@drawable/ic_baseline_description_40" />
+
+            <TextView
+                style="@style/profileDetailsTextMain"
+                android:layout_toEndOf="@id/companyImageView"
+                android:text="@string/name_company" />
+
+            <TextView
+                android:id="@+id/tv_company"
+                style="@style/profileDetailsMiniText"
+                android:layout_toEndOf="@id/companyImageView"
+                tools:text="company" />
+        </RelativeLayout>
+
+        <View
+            android:id="@+id/companyLine"
             style="@style/proifleDetailsView" />
 
         <RelativeLayout

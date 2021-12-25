@@ -95,6 +95,17 @@
                 android:textColor="@color/themeColor"
                 android:textSize="17sp"
                 android:textStyle="bold" />
+
+            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+                android:id="@+id/cirGuestButton"
+                style="@style/loginGuestButton"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="@dimen/loginViewsMargin"
+                android:text="@string/login_guest"
+                app:initialCornerAngle="27dp"
+                app:spinning_bar_color="#FFF"
+                app:spinning_bar_padding="6dp"
+                app:spinning_bar_width="4dp" />
         </LinearLayout>
     </ScrollView>
 

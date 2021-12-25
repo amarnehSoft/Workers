@@ -52,6 +52,7 @@ open class RequestsOutAdapter(
         RecyclerView.ViewHolder(itemView) {
         var imageView: ImageView
         var nameView: TextView
+        var detailsView: TextView
         var btnCancel: CircularProgressButton
         var btnProfile: CircularProgressButton
         var tvStatus: TextView
@@ -88,6 +89,8 @@ open class RequestsOutAdapter(
                 itemView.context.getString(R.string.you_sent_invitation_to, request!!.toName)
             // itemView.context.getString(R.string.requested_to_join, request!!.fromName)
 
+            detailsView.text = request.details
+
 // Mohammad amarneh want to join
             // Click listener
             itemView.setOnClickListener { listener?.onItemSelected(snapshot) }
@@ -122,6 +125,7 @@ open class RequestsOutAdapter(
         init {
             imageView = itemView.findViewById(R.id.iv_profile)
             nameView = itemView.findViewById(R.id.tv_content)
+            detailsView = itemView.findViewById(R.id.tv_details)
             btnCancel = itemView.findViewById(R.id.btn_cancel)
             btnProfile = itemView.findViewById(R.id.btn_profile)
             tvStatus = itemView.findViewById(R.id.tv_status)

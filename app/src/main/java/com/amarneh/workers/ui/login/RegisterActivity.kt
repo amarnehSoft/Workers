@@ -61,6 +61,9 @@ class RegisterActivity : AppCompatActivity() {
                 if (loginState.emailError != null) {
                     email.error = getString(loginState.emailError)
                 }
+                if (loginState.cardIdError != null) {
+                    binding.editTextCardId.error = getString(loginState.cardIdError)
+                }
                 if (loginState.phoneError != null) {
                     binding.editTextMobile.error = getString(loginState.phoneError)
                 }
@@ -104,7 +107,9 @@ class RegisterActivity : AppCompatActivity() {
 
             val menu = PopupMenu(this, binding.btnProfession)
 
-            professions.forEach { profession ->
+            professions.map {
+                it.first
+            }.forEach { profession ->
                 menu.menu.add(profession).setOnMenuItemClickListener {
                     binding.btnProfession.text = profession
 
@@ -114,10 +119,36 @@ class RegisterActivity : AppCompatActivity() {
                         password = binding.editTextPassword.string(),
                         repeatPassword = binding.editTextRepeatPassword.string(),
                         phone = binding.editTextMobile.string(),
-                        location = binding.editTextLocation.string(),
                         profession = binding.btnProfession.text.toString(),
-                        desc = binding.editTextDescription.toString()
+                        cardId = binding.editTextCardId.string()
                     )
+
+                    binding.btnCategory.text = "شامل"
+                    true
+                }
+            }
+            menu.show()
+        }
+
+        binding.btnCategory.setOnClickListener {
+
+            val menu = PopupMenu(this, binding.btnCategory)
+
+            professions.find {
+                it.first == binding.btnProfession.text.toString()
+            }?.second?.forEach { category ->
+                menu.menu.add(category).setOnMenuItemClickListener {
+                    binding.btnCategory.text = category
+
+//                    loginViewModel.registerDataChanged(
+//                        email = binding.editTextEmail.string(),
+//                        name = binding.editTextName.string(),
+//                        password = binding.editTextPassword.string(),
+//                        repeatPassword = binding.editTextRepeatPassword.string(),
+//                        phone = binding.editTextMobile.string(),
+//                        profession = binding.btnProfession.text.toString(),
+//                        cardId = binding.editTextCardId.string()
+//                    )
 
                     true
                 }
@@ -129,13 +160,18 @@ class RegisterActivity : AppCompatActivity() {
             // loading.visibility = View.VISIBLE
             register.startAnimation()
             loginViewModel.register(
-                name.string(),
-                email.string(),
-                password.string(),
-                binding.editTextLocation.string(),
-                binding.editTextMobile.string(),
-                binding.editTextDescription.string(),
-                binding.btnProfession.text.toString()
+                name = name.string(),
+                fatherName = binding.editTextFather.string(),
+                familyName = binding.editTextFamily.string(),
+                email = email.string(),
+                password = password.string(),
+                cardId = binding.editTextCardId.string(),
+                location = binding.editTextLocation.string(),
+                phone = binding.editTextMobile.string(),
+                description = binding.editTextDescription.string(),
+                profession = binding.btnProfession.text.toString(),
+                category = binding.btnCategory.text.toString(),
+                companyName = binding.editTextCompany.string()
             )
         }
 
@@ -150,26 +186,27 @@ class RegisterActivity : AppCompatActivity() {
             updateTabsUI()
         }
 
-        binding.tvGuest.setOnClickListener {
-            loginViewModel.userType = User.TYPE_GUEST
-            updateTabsUI()
-        }
+//        binding.tvGuest.setOnClickListener {
+//            loginViewModel.userType = User.TYPE_GUEST
+//            updateTabsUI()
+//        }
     }
 
     private fun updateTabsUI() {
         when (loginViewModel.userType) {
             User.TYPE_WORKER -> {
                 binding.worker.background =
-                    ContextCompat.getDrawable(this, R.drawable.bg_manager_mode_toggle_center)
+                    ContextCompat.getDrawable(this, R.drawable.bg_manager_mode_toggle_right)
                 binding.worker.setTypeface(null, Typeface.BOLD)
                 binding.company.background = null
                 binding.company.setTypeface(null, Typeface.NORMAL)
-                binding.tvGuest.background = null
-                binding.tvGuest.setTypeface(null, Typeface.NORMAL)
+//                binding.tvGuest.background = null
+//                binding.tvGuest.setTypeface(null, Typeface.NORMAL)
 
                 binding.textInputMobile.visibility = View.VISIBLE
                 binding.textInputLocation.visibility = View.VISIBLE
-                binding.btnProfession.visibility = View.GONE
+                binding.btnProfession.visibility = View.VISIBLE
+                binding.btnCategory.visibility = View.VISIBLE
                 binding.textInputDescription.visibility = View.VISIBLE
             }
             User.TYPE_COMPANY -> {
@@ -178,12 +215,13 @@ class RegisterActivity : AppCompatActivity() {
                 binding.company.background =
                     ContextCompat.getDrawable(this, R.drawable.bg_manager_mode_toggle_left)
                 binding.company.setTypeface(null, Typeface.BOLD)
-                binding.tvGuest.background = null
-                binding.tvGuest.setTypeface(null, Typeface.NORMAL)
+//                binding.tvGuest.background = null
+//                binding.tvGuest.setTypeface(null, Typeface.NORMAL)
 
                 binding.textInputMobile.visibility = View.VISIBLE
                 binding.textInputLocation.visibility = View.VISIBLE
-                binding.btnProfession.visibility = View.VISIBLE
+                binding.btnProfession.visibility = View.GONE
+                binding.btnCategory.visibility = View.GONE
                 binding.textInputDescription.visibility = View.VISIBLE
             }
             else -> {
@@ -191,13 +229,14 @@ class RegisterActivity : AppCompatActivity() {
                 binding.worker.setTypeface(null, Typeface.NORMAL)
                 binding.company.background = null
                 binding.company.setTypeface(null, Typeface.NORMAL)
-                binding.tvGuest.background =
-                    ContextCompat.getDrawable(this, R.drawable.bg_manager_mode_toggle_right)
-                binding.tvGuest.setTypeface(null, Typeface.BOLD)
+//                binding.tvGuest.background =
+//                    ContextCompat.getDrawable(this, R.drawable.bg_manager_mode_toggle_right)
+//                binding.tvGuest.setTypeface(null, Typeface.BOLD)
 
                 binding.textInputMobile.visibility = View.GONE
                 binding.textInputLocation.visibility = View.GONE
                 binding.btnProfession.visibility = View.GONE
+                binding.btnCategory.visibility = View.GONE
                 binding.textInputDescription.visibility = View.GONE
             }
         }
@@ -234,9 +273,8 @@ class RegisterActivity : AppCompatActivity() {
                 password = binding.editTextPassword.string(),
                 repeatPassword = binding.editTextRepeatPassword.string(),
                 phone = binding.editTextMobile.string(),
-                location = binding.editTextLocation.string(),
                 profession = binding.btnProfession.text.toString(),
-                desc = binding.editTextDescription.toString()
+                cardId = binding.editTextCardId.string()
             )
         }
     }
