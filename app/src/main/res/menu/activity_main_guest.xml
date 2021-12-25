@@ -4,10 +4,10 @@
     tools:showIn="navigation_view">
 
     <group android:checkableBehavior="single">
-        <!--        <item-->
-        <!--            android:id="@+id/nav_news_feed"-->
-        <!--            android:icon="@drawable/ic_baseline_work_24"-->
-        <!--            android:title="@string/news_feed" />-->
+        <item
+            android:id="@+id/nav_news_feed"
+            android:icon="@drawable/ic_baseline_work_24"
+            android:title="@string/news_feed" />
 
         <!--        <item-->
         <!--            android:id="@+id/nav_profile"-->
@@ -15,11 +15,6 @@
         <!--            android:iconTint="#3698A7"-->
         <!--            android:title="@string/profile" />-->
 
-
-        <item
-            android:id="@+id/nav_about"
-            android:icon="@drawable/ic_baseline_info_24"
-            android:title="@string/about" />
 
         <item
             android:id="@+id/nav_users"
@@ -31,9 +26,14 @@
             android:icon="@drawable/ic_baseline_supervised_user_circle_24"
             android:title="@string/companies" />
 
-<!--        <item-->
-<!--            android:id="@+id/nav_logout"-->
-<!--            android:icon="@drawable/ic_baseline_login_24"-->
-<!--            android:title="@string/logout" />-->
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_baseline_info_24"
+            android:title="@string/about" />
+
+        <!--        <item-->
+        <!--            android:id="@+id/nav_logout"-->
+        <!--            android:icon="@drawable/ic_baseline_login_24"-->
+        <!--            android:title="@string/logout" />-->
     </group>
 </menu>

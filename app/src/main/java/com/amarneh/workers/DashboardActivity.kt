@@ -49,6 +49,7 @@ class DashboardActivity : AppCompatActivity() {
             when (user?.type) {
                 User.TYPE_WORKER -> {
                     setOf(
+                        R.id.nav_news_feed,
                         R.id.nav_companies,
                         R.id.nav_requests,
                         R.id.nav_profile,
@@ -57,6 +58,7 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 User.TYPE_COMPANY -> {
                     setOf(
+                        R.id.nav_news_feed,
                         R.id.nav_users,
                         R.id.nav_requests,
                         R.id.nav_profile,
@@ -66,10 +68,10 @@ class DashboardActivity : AppCompatActivity() {
                 }
                 else -> {
                     setOf(
-                        R.id.nav_about,
+                        R.id.nav_news_feed,
                         R.id.nav_users,
                         R.id.nav_companies,
-                        R.id.nav_logout
+                        R.id.nav_about
                     )
                 }
             },
