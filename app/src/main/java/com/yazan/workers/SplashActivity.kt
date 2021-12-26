@@ -1,6 +1,7 @@
 package com.yazan.workers
 
 import android.content.Intent
+import android.content.res.Configuration
 import android.os.Bundle
 import android.widget.Toast
 import androidx.annotation.StringRes
@@ -14,12 +15,18 @@ import com.yazan.workers.ui.login.LoginViewModelFactory
 import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.ktx.Firebase
+import java.util.*
 
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var loginViewModel: LoginViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
+        val configuration: Configuration = resources.configuration
+        configuration.setLayoutDirection(Locale("ar"))
+        resources.updateConfiguration(configuration, resources.displayMetrics)
+
         super.onCreate(savedInstanceState)
 
         loginViewModel = ViewModelProvider(this, LoginViewModelFactory())

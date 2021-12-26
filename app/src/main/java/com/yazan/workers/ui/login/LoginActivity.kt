@@ -32,11 +32,6 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
-
-        val configuration: Configuration = resources.configuration
-        configuration.setLayoutDirection(Locale("ar"))
-        resources.updateConfiguration(configuration, resources.displayMetrics)
-
         super.onCreate(savedInstanceState)
 
         // for changing status bar icon colors
