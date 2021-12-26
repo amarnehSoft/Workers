@@ -7,49 +7,49 @@
 
     <fragment
         android:id="@+id/nav_news_feed"
-        android:name="com.amarneh.workers.ui.feed.FeedFragment"
+        android:name="com.yazan.workers.ui.feed.FeedFragment"
         android:label="@string/news_feed"
         tools:layout="@layout/fragment_users" />
 
     <fragment
         android:id="@+id/nav_requests"
-        android:name="com.amarneh.workers.ui.requests.RequestsFragment"
+        android:name="com.yazan.workers.ui.requests.RequestsFragment"
         android:label="@string/requests"
         tools:layout="@layout/fragment_requests" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.amarneh.workers.ui.ProfileFragment"
+        android:name="com.yazan.workers.ui.ProfileFragment"
         android:label="@string/profile"
         tools:layout="@layout/activity_profile" />
 
     <fragment
         android:id="@+id/nav_users"
-        android:name="com.amarneh.workers.ui.users.UsersFragment"
+        android:name="com.yazan.workers.ui.users.UsersFragment"
         android:label="@string/users"
         tools:layout="@layout/fragment_users" />
 
     <fragment
         android:id="@+id/nav_companies"
-        android:name="com.amarneh.workers.ui.users.CompaniesFragment"
+        android:name="com.yazan.workers.ui.users.CompaniesFragment"
         android:label="@string/companies"
         tools:layout="@layout/fragment_users" />
 
     <fragment
         android:id="@+id/nav_team"
-        android:name="com.amarneh.workers.ui.team.TeamFragment"
+        android:name="com.yazan.workers.ui.team.TeamFragment"
         android:label="@string/my_team"
         tools:layout="@layout/fragment_users" />
 
     <fragment
         android:id="@+id/nav_logout"
-        android:name="com.amarneh.workers.ui.logout.LogoutFragment"
+        android:name="com.yazan.workers.ui.logout.LogoutFragment"
         android:label="@string/logout"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_about"
-        android:name="com.amarneh.workers.ui.about.AboutFragment"
+        android:name="com.yazan.workers.ui.about.AboutFragment"
         android:label="@string/about"
         tools:layout="@layout/fragment_about" />
 </navigation>

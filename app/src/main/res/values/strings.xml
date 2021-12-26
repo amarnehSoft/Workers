@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Workers</string>
+    <string name="app_name">صنعة</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
     <string name="title_activity_login">LoginActivity</string>
@@ -16,7 +16,7 @@
     <string name="register_failed">خطأ في انشاء الحساب</string>
     <string name="invalid_phone">رقم الهاتف اجباري</string>
     <string name="invalid_profession">المهنة اجبارية</string>
-    <string name="invalid_card_id">يجب ان يتكون رقم الهوية من ١٣ خانة</string>
+    <string name="invalid_card_id">يجب ان يتكون رقم الهوية من ٩ خانات</string>
 
     <string name="login_email_hint">الايميل</string>
     <string name="register_email_hint">الايميل(اجباري)</string>
