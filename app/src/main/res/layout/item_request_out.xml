@@ -41,7 +41,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                 app:layout_constraintStart_toEndOf="@id/iv_profile"
                 app:layout_constraintTop_toTopOf="@id/iv_profile"
-                tools:text="You sent invitation to Mohammad Amarneh" />
+                tools:text="You sent invitation to Yazan" />
 
             <TextView
                 android:id="@+id/tv_details"

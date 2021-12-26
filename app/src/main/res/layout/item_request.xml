@@ -39,7 +39,7 @@
                 app:layout_constraintBottom_toBottomOf="@id/iv_profile"
                 app:layout_constraintStart_toEndOf="@id/iv_profile"
                 app:layout_constraintTop_toTopOf="@id/iv_profile"
-                tools:text="Mohammad Amarneh want to join" />
+                tools:text="Yazan want to join" />
 
             <TextView
                 android:id="@+id/tv_details"
