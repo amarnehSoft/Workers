@@ -50,8 +50,7 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
         phone: String,
         companyName: String,
         description: String,
-        profession: String,
-        category: String
+        profession: String
     ) {
         // can be launched in a separate asynchronous job
         viewModelScope.launch {
@@ -65,7 +64,6 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
                 cardId = cardId,
                 location = location,
                 profession = profession,
-                category = category,
                 desc = description,
                 companyName = companyName,
                 phone = phone,

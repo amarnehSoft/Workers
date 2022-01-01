@@ -107,7 +107,7 @@ open class UsersFragment : Fragment(R.layout.fragment_users), UsersAdapter.OnIte
     private fun showAlertDialog() {
         val alertDialog: AlertDialog.Builder = AlertDialog.Builder(requireContext())
         alertDialog.setTitle(getString(R.string.profession))
-        val items = professions.map { it.first }.toTypedArray()
+        val items = professions.toTypedArray()
         val checkedItems = items.map {
             selectedProfessions.contains(it)
         }.toBooleanArray()

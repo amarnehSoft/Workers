@@ -19,7 +19,6 @@ data class User(
     val password: String = "",
     val location: String = "",
     val profession: String = "",
-    val category: String = "",
     val desc: String = "",
     val phone: String = "",
     val cardId: String = "",

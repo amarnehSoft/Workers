@@ -56,9 +56,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.btnProfession.setOnClickListener {
             val menu = PopupMenu(this, binding.btnProfession)
 
-            professions.map {
-                it.first
-            }.forEach { profession ->
+            professions.forEach { profession ->
                 menu.menu.add(profession).setOnMenuItemClickListener {
                     binding.btnProfession.text = profession
                     true

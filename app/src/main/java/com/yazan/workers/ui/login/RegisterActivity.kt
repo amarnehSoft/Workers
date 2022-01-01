@@ -107,9 +107,7 @@ class RegisterActivity : AppCompatActivity() {
 
             val menu = PopupMenu(this, binding.btnProfession)
 
-            professions.map {
-                it.first
-            }.forEach { profession ->
+            professions.forEach { profession ->
                 menu.menu.add(profession).setOnMenuItemClickListener {
                     binding.btnProfession.text = profession
 
@@ -123,38 +121,38 @@ class RegisterActivity : AppCompatActivity() {
                         cardId = binding.editTextCardId.string()
                     )
 
-                    binding.btnCategory.text = "شامل"
+                    //binding.btnCategory.text = "شامل"
                     true
                 }
             }
             menu.show()
         }
 
-        binding.btnCategory.setOnClickListener {
-
-            val menu = PopupMenu(this, binding.btnCategory)
-
-            professions.find {
-                it.first == binding.btnProfession.text.toString()
-            }?.second?.forEach { category ->
-                menu.menu.add(category).setOnMenuItemClickListener {
-                    binding.btnCategory.text = category
-
-//                    loginViewModel.registerDataChanged(
-//                        email = binding.editTextEmail.string(),
-//                        name = binding.editTextName.string(),
-//                        password = binding.editTextPassword.string(),
-//                        repeatPassword = binding.editTextRepeatPassword.string(),
-//                        phone = binding.editTextMobile.string(),
-//                        profession = binding.btnProfession.text.toString(),
-//                        cardId = binding.editTextCardId.string()
-//                    )
-
-                    true
-                }
-            }
-            menu.show()
-        }
+//        binding.btnCategory.setOnClickListener {
+//
+//            val menu = PopupMenu(this, binding.btnCategory)
+//
+//            professions.find {
+//                it.first == binding.btnProfession.text.toString()
+//            }?.second?.forEach { category ->
+//                menu.menu.add(category).setOnMenuItemClickListener {
+//                    binding.btnCategory.text = category
+//
+////                    loginViewModel.registerDataChanged(
+////                        email = binding.editTextEmail.string(),
+////                        name = binding.editTextName.string(),
+////                        password = binding.editTextPassword.string(),
+////                        repeatPassword = binding.editTextRepeatPassword.string(),
+////                        phone = binding.editTextMobile.string(),
+////                        profession = binding.btnProfession.text.toString(),
+////                        cardId = binding.editTextCardId.string()
+////                    )
+//
+//                    true
+//                }
+//            }
+//            menu.show()
+//        }
 
         register.setOnClickListener {
             // loading.visibility = View.VISIBLE
@@ -170,7 +168,6 @@ class RegisterActivity : AppCompatActivity() {
                 phone = binding.editTextMobile.string(),
                 description = binding.editTextDescription.string(),
                 profession = binding.btnProfession.text.toString(),
-                category = binding.btnCategory.text.toString(),
                 companyName = binding.editTextCompany.string()
             )
         }
@@ -206,7 +203,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.textInputMobile.visibility = View.VISIBLE
                 binding.textInputLocation.visibility = View.VISIBLE
                 binding.btnProfession.visibility = View.VISIBLE
-                binding.btnCategory.visibility = View.VISIBLE
+                //binding.btnCategory.visibility = View.VISIBLE
                 binding.textInputDescription.visibility = View.VISIBLE
             }
             User.TYPE_COMPANY -> {
@@ -221,7 +218,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.textInputMobile.visibility = View.VISIBLE
                 binding.textInputLocation.visibility = View.VISIBLE
                 binding.btnProfession.visibility = View.GONE
-                binding.btnCategory.visibility = View.GONE
+                //binding.btnCategory.visibility = View.GONE
                 binding.textInputDescription.visibility = View.VISIBLE
             }
             else -> {
@@ -236,7 +233,7 @@ class RegisterActivity : AppCompatActivity() {
                 binding.textInputMobile.visibility = View.GONE
                 binding.textInputLocation.visibility = View.GONE
                 binding.btnProfession.visibility = View.GONE
-                binding.btnCategory.visibility = View.GONE
+                //binding.btnCategory.visibility = View.GONE
                 binding.textInputDescription.visibility = View.GONE
             }
         }
