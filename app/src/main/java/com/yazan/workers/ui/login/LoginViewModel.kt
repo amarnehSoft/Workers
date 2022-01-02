@@ -5,11 +5,14 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import com.yazan.workers.R
 import com.yazan.workers.data.LoginRepository
 import com.yazan.workers.data.Result
 import com.yazan.workers.data.models.User
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel() {
 
@@ -54,27 +57,38 @@ class LoginViewModel(private val loginRepository: LoginRepository) : ViewModel()
     ) {
         // can be launched in a separate asynchronous job
         viewModelScope.launch {
-            val user = User(
-                id = "",
-                name = name,
-                fatherName = fatherName,
-                familyName = familyName,
-                email = email,
-                password = password,
-                cardId = cardId,
-                location = location,
-                profession = profession,
-                desc = description,
-                companyName = companyName,
-                phone = phone,
-                type = userType
-            )
-            val result = loginRepository.register(user)
-            if (result is Result.Success) {
-                _loginResult.value =
-                    LoginResult(success = result.data)
+
+            val users =
+                Firebase.firestore.collection("users").get().await().toObjects(User::class.java)
+            val cardIdError = users.map {
+                it.cardId
+            }.contains(cardId)
+
+            if (cardIdError) {
+                _loginResult.value = LoginResult(error = R.string.card_id_error)
             } else {
-                _loginResult.value = LoginResult(error = R.string.register_failed)
+                val user = User(
+                    id = "",
+                    name = name,
+                    fatherName = fatherName,
+                    familyName = familyName,
+                    email = email,
+                    password = password,
+                    cardId = cardId,
+                    location = location,
+                    profession = profession,
+                    desc = description,
+                    companyName = companyName,
+                    phone = phone,
+                    type = userType
+                )
+                val result = loginRepository.register(user)
+                if (result is Result.Success) {
+                    _loginResult.value =
+                        LoginResult(success = result.data)
+                } else {
+                    _loginResult.value = LoginResult(error = R.string.register_failed)
+                }
             }
         }
     }

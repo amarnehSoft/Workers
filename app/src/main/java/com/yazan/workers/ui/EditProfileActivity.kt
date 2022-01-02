@@ -2,6 +2,7 @@ package com.yazan.workers.ui
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.PopupMenu
 import androidx.lifecycle.lifecycleScope
@@ -11,6 +12,8 @@ import com.yazan.workers.professions
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import com.yazan.workers.R
+import com.yazan.workers.ui.login.LoginResult
 import com.yazan.workers.ui.login.string
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
@@ -31,8 +34,6 @@ class EditProfileActivity : AppCompatActivity() {
         initUser(User.user!!)
 
         binding.cirRegisterButton.setOnClickListener {
-            binding.cirRegisterButton.startAnimation()
-
             val newUser = user.copy(
                 name = binding.editTextName.string(),
                 fatherName = binding.editTextFamily.string(),
@@ -46,10 +47,28 @@ class EditProfileActivity : AppCompatActivity() {
                 companyName = binding.editTextCompany.string()
             )
             lifecycleScope.launch {
-                Firebase.firestore.collection("users").document(userId).set(newUser).await()
-                User.user = newUser
-                binding.cirRegisterButton.revertAnimation()
-                finish()
+
+                val users =
+                    Firebase.firestore.collection("users").get().await().toObjects(User::class.java)
+                val cardIdError = users.filterNot {
+                    it.cardId == user.cardId
+                }.map {
+                    it.cardId
+                }.contains(newUser.cardId)
+
+                if (cardIdError) {
+                    Toast.makeText(
+                        this@EditProfileActivity,
+                        R.string.card_id_error,
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    binding.cirRegisterButton.startAnimation()
+                    Firebase.firestore.collection("users").document(userId).set(newUser).await()
+                    User.user = newUser
+                    binding.cirRegisterButton.revertAnimation()
+                    finish()
+                }
             }
         }
 

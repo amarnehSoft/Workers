@@ -38,7 +38,7 @@ class LogoutFragment : Fragment() {
         // })
 
         binding.btnLogout.setOnClickListener {
-            Firebase.auth.signOut()
+            // Firebase.auth.signOut()
             activity?.finish()
             startActivity(Intent(context, LoginActivity::class.java))
         }
