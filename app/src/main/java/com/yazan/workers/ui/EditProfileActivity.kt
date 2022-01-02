@@ -36,7 +36,7 @@ class EditProfileActivity : AppCompatActivity() {
         binding.cirRegisterButton.setOnClickListener {
             val newUser = user.copy(
                 name = binding.editTextName.string(),
-                fatherName = binding.editTextFamily.string(),
+                fatherName = binding.editTextFather.string(),
                 familyName = binding.editTextFamily.string(),
                 email = binding.editTextEmail.string(),
                 phone = binding.editTextMobile.string(),
