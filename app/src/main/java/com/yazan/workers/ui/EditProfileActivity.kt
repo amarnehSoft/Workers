@@ -109,9 +109,9 @@ class EditProfileActivity : AppCompatActivity() {
                 textInputDescription.visibility = View.VISIBLE
                 textInputLocation.visibility = View.VISIBLE
                 if (user.type == User.TYPE_COMPANY) {
-                    btnProfession.visibility = View.VISIBLE
-                } else {
                     btnProfession.visibility = View.GONE
+                } else {
+                    btnProfession.visibility = View.VISIBLE
                 }
             }
 
