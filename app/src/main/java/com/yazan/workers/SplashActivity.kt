@@ -33,9 +33,13 @@ class SplashActivity : AppCompatActivity() {
             .get(LoginViewModel::class.java)
 
         if (Firebase.auth.currentUser != null) {
-            User.retrieveUserInfo(lifecycleScope) {
-                startActivity(Intent(this, DashboardActivity::class.java))
-                finish()
+            if (User.user?.type == User.TYPE_GUEST) {
+                User.retrieveUserInfo(lifecycleScope) {
+                    startActivity(Intent(this, DashboardActivity::class.java))
+                    finish()
+                }
+            } else {
+                loginViewModel.login("g@g.com", "123123")
             }
         } else {
             // login as a guest
